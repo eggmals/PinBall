@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PaddleController : MonoBehaviour
 {
     public KeyCode input;
+
     private float targetPressed;
     private float targetRelease;
     private HingeJoint hinge;
 
-    void Start()
+    private void Start()
     {
         hinge = GetComponent<HingeJoint>();
 
@@ -17,23 +16,23 @@ public class PaddleController : MonoBehaviour
         targetRelease = hinge.limits.min;
     }
 
-    void Update()
+    private void Update()
     {
-        ReadInput();
+        ReadIput();
     }
 
-    private void ReadInput()
+    private void ReadIput()
     {
         JointSpring jointSpring = hinge.spring;
-
         if (Input.GetKey(input))
-        {
-            jointSpring.targetPosition = targetPressed;
+        {  
+            jointSpring.targetPosition= targetPressed;
         }
         else
         {
-            jointSpring.targetPosition = targetRelease;
+             jointSpring.targetPosition = targetRelease;
         }
+
         hinge.spring = jointSpring;
     }
 }
